@@ -9,17 +9,12 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-/**
- * Slug Aware Categories Widget Class
- */
 class slug_aware_categories_widget extends WP_Widget {
 
-  /** constructor -- name this the same as the class above */
   function slug_aware_categories_widget() {
       parent::WP_Widget(false, $name = 'Slug Aware Categories');
   }
 
- /** @see WP_Widget::widget -- do not rename this */
  function widget($args, $instance) {
   extract( $args );
   $title      = apply_filters('widget_title', $instance['title']); // the widget title
@@ -31,7 +26,6 @@ class slug_aware_categories_widget extends WP_Widget {
    'taxonomy' => $taxonomy
   );
 
-  // retrieves an array of categories or taxonomy terms
   $cats = get_categories($args);
   ?>
      <?php echo $before_widget; ?>
@@ -50,7 +44,6 @@ class slug_aware_categories_widget extends WP_Widget {
   <?php
  }
 
- /** @see WP_Widget::update -- do not rename this */
  function update($new_instance, $old_instance) {
   $instance = $old_instance;
   $instance['title'] = strip_tags($new_instance['title']);
@@ -59,7 +52,6 @@ class slug_aware_categories_widget extends WP_Widget {
   return $instance;
  }
 
-  /** @see WP_Widget::form -- do not rename this */
   function form($instance) {
     $title   = esc_attr($instance['title']);
     $number  = esc_attr($instance['number']);
